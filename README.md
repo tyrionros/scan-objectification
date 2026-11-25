@@ -13,6 +13,27 @@ npm.cmd run dev
 
 Open http://127.0.0.1:5173/viewer.html and select your files with **Open IFC** and **Open Gaussian PLY**. Nothing is uploaded. Local sample files belong in gitignored `test_files/`.
 
+### macOS and Linux
+
+Install Node.js 24 and, if you want to run the Python API, Python 3.12. From the repository root, start the browser-only viewer with:
+
+```sh
+npm install
+npm run dev
+```
+
+To install and start the Python API as well:
+
+```sh
+python3.12 -m venv .venv
+.venv/bin/python -m pip install -e .
+.venv/bin/python -m nemy_web.app
+```
+
+Open http://127.0.0.1:8767/ for the production viewer after building with `npm run build`. To run Python tests, install the development dependencies with `.venv/bin/python -m pip install -e '.[dev]'`. The SAM 3.1 inference runtime and model checkpoint are not installed by these commands; SAM inference requires those to be provisioned separately on the machine.
+
+The Windows command examples below use `npm.cmd`, `node.exe`, and `.venv\Scripts\python.exe`. On macOS and Linux, use `npm`, `node`, and `.venv/bin/python` respectively.
+
 The viewer uses **Z up**, with the ground grid in the XY plane. Imported IFC geometry is converted from the importer's Y-up coordinates; Z-up PLY scans retain their native orientation.
 
 Drag to orbit, right-drag to pan, and scroll to zoom. **Fit all** or **F** frames visible layers. Each layer has a visibility checkbox and its own frame button.
